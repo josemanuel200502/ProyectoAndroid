@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingBottom="60dp"
+    android:layout_height="wrap_content"
+    android:background="@color/verdepastel">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Codigo:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarCodigoCursos"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Nombre:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarNombreCurso"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Descripcion:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarDescripcionCursos"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Informacion:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarInformacionCursos"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Precio:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarPrecioCursos"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Url Imagen:"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/ModificarUrlCursos"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            android:background="@drawable/crud_radius"
+            android:contentDescription="content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ModificarButtonCursos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modificar"
+        android:backgroundTint="@color/botonAdmin" />
+
+</LinearLayout>

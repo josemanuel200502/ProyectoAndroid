@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/app">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo" />
+    </LinearLayout>
+
+    <!-- Contenedor para el Fragment -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Barra de navegación inferior -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/TextBoxLogin"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Íconos de la barra inferior -->
+
+        <ImageButton
+            android:id="@+id/botonInicio"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ic_inicio"
+            android:contentDescription="inicio" />
+
+        <ImageButton
+            android:id="@+id/botonAjustes"
+            android:layout_width="55dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="40dp"
+            android:contentDescription="settings"
+            android:background="@drawable/ic_settings" />
+
+        <ImageButton
+            android:id="@+id/botonCesta"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:contentDescription="cesta"
+            android:background="@drawable/ic_cesta" />
+    </LinearLayout>
+</LinearLayout>

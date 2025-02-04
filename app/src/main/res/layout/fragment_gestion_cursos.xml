@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/amarillopollo"
+    tools:context=".GestionCursos">
+
+    <LinearLayout
+        android:id="@+id/cursos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135">
+
+        <ImageView
+            android:id="@+id/FlechaVolverCursos"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:padding="8dp"
+            android:paddingStart="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/flechavolver" />
+
+        <TextView
+            android:id="@+id/cursosTextView"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingEnd="30dp"
+            android:text="Cursos"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_duration="500"
+                app:expandable_animation="overshoot"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/insertar_cursos"
+                app:expandable_secondLayout="@layout/insertar_cursos_exp"/>
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandableLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                app:expandable_duration="300"
+                app:expandable_animation="overshoot"
+                app:expandable_parentLayout="@layout/eliminar_cursos"
+                app:expandable_secondLayout="@layout/eliminar_cursos_exp"
+                app:expandable_isExpanded="false"/>
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandableLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                app:expandable_duration="300"
+                app:expandable_animation="overshoot"
+                app:expandable_parentLayout="@layout/modificar_cursos"
+                app:expandable_secondLayout="@layout/modificar_cursos_exp"
+                app:expandable_isExpanded="false" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

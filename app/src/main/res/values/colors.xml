@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="verde1">#AABEA5</color>
+    <color name="verde2">#B9E2BA</color>
+    <color name="TituloLogin">#4E352F</color>
+    <color name="TextBoxLogin">#568241</color>
+    <color name="verdeadministrador">#B9E2BA</color>
+    <color name="amarillopollo">#FDFFE1</color>
+    <color name="verdepastel">#E4FAD9</color>
+    <color name="grisClaro">#E2E4E2</color>
+    <color name="botonAdmin">#6B9C6D</color>
+</resources>

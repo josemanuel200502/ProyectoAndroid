@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillopollo"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/Flecha"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:padding="8dp"
+            android:paddingLeft="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/flechavolver" />
+
+        <TextView
+            android:id="@+id/Administrador"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingRight="30dp"
+            android:text="Ajustes"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="411dp"
+        android:layout_height="142dp"
+        android:background="@color/verdepastel"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.135"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:id="@+id/FotoPerfil"
+            android:layout_width="59dp"
+            android:layout_height="99dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circulo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fotoperfil2" />
+
+        <TextView
+            android:layout_width="59dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="EditarPerfil"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/FlechaPerfil"
+            android:layout_width="50dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/flechadelado" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="413dp"
+        android:layout_height="91dp"
+        android:background="@color/verdepastel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.253"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="322dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Versión"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="208dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="1.0.2.2"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

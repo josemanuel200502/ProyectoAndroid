@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillopollo">
+
+    <!-- Imagen de la vela -->
+    <ImageView
+        android:id="@+id/imageVela"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/fotocursos" />
+
+    <!-- Capa oscura detrás de la flecha de volver -->
+    <View
+        android:id="@+id/darkOverlay"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_overlay"
+        app:layout_constraintTop_toTopOf="@id/imageVela"
+        app:layout_constraintStart_toStartOf="@id/imageVela" />
+
+    <!-- Imagen para volver (botón encima de la imagen de la vela) -->
+    <ImageButton
+        android:id="@+id/volverButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/flechavolver"
+        android:contentDescription="Volver"
+        app:layout_constraintTop_toTopOf="@id/imageVela"
+        app:layout_constraintStart_toStartOf="@id/imageVela"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        />
+
+
+    <!-- Título del curso -->
+    <TextView
+        android:id="@+id/titleVela"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cherry_swash"
+        android:gravity="center"
+        android:text="Vela Marijuana"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/imageVela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Rectángulo con bordes redondeados -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="3dp"
+        android:backgroundTint="@color/verdepastel"
+        app:layout_constraintTop_toBottomOf="@id/titleVela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/verdepastel">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp">
+
+                    <Button
+                        android:id="@+id/botonVelaChica"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="260 gr"
+                        android:layout_marginRight="30dp"
+                        android:backgroundTint="@color/botonAdmin" />
+
+                    <Button
+                        android:id="@+id/botonVelaGrande"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="450 gr"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/botonAdmin" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/TituloDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/baloo_thambi_2"
+                    android:text="Descripcion"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="16dp" />
+
+                <TextView
+                    android:id="@+id/descriptionVela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción de la vela..."
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="3dp" />
+
+                <TextView
+                    android:id="@+id/TituloInformacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/baloo_thambi_2"
+                    android:text="Información"
+                    android:textSize="20sp"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/infoVela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Información adicional..."
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="3dp" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

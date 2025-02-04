@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillopollo">
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/imageCurso"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/fotocursos"
+        android:layout_alignParentTop="true" />
+
+    <!-- Título del curso -->
+    <TextView
+        android:id="@+id/titleCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageCurso"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cherry_swash"
+        android:gravity="center"
+        android:text="Curso: Crea tu vela"
+        android:textColor="#4B4B4B"
+        android:textSize="24sp" />
+
+    <!-- Rectángulo con bordes redondeados -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_below="@id/titleCurso"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="3dp"
+        android:backgroundTint="@color/verdepastel">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Descripción -->
+
+                <TextView
+                    android:id="@+id/TituloDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/baloo_thambi_2"
+                    android:text="Descripcion"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.516"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.683"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/descriptionCurso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:paddingTop="10dp"
+                    android:text="Descripción del curso..."
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="3dp"
+                    android:fontFamily="@font/baloo_thambi_2" />
+
+                <!-- Información adicional -->
+
+                <TextView
+                    android:id="@+id/TituloInformacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/baloo_thambi_2"
+                    android:text="Información"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.516"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.683"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/infoCurso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:justificationMode="inter_word"
+                    android:paddingTop="10dp"
+                    android:text="Información adicional..."
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="2dp"
+                    android:fontFamily="@font/baloo_thambi_2" />
+
+                <!-- Botón para hacer la reserva -->
+
+                <Button
+                    android:id="@+id/buttonReserva"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardDescripcion"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/botonAdmin"
+                    android:text="Hacer reserva"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
