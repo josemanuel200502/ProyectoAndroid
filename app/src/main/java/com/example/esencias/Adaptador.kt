@@ -3,6 +3,7 @@ package com.example.esencias
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -18,41 +19,38 @@ import com.bumptech.glide.request.RequestOptions
 * */
 
 class Adaptador(
-        private val listaVelas: List<Vela>,
-        private val onItemClick: (Vela) -> Unit
-                ): RecyclerView.Adapter<Adaptador.ViewHolder>() {
+    private val listaProductos: List<Producto>,
+    private val onItemClick: (Producto) -> Unit,
+    private val onAgregarClick: (Producto) -> Unit
+) : RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
-    /*
-     * Clase interna ViewHolder que se encarga de gestionar las vistas individuales
-     * de cada elemento del RecyclerView.
-     * */
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nombre: TextView = itemView.findViewById(R.id.nombreVela)
-        val precio: TextView = itemView.findViewById(R.id.precioVela)
-        val imagen: ImageView = itemView.findViewById(R.id.imagenVela)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val nombre: TextView = itemView.findViewById(R.id.nombreVela)
+        private val precio: TextView = itemView.findViewById(R.id.precioVela)
+        private val imagen: ImageView = itemView.findViewById(R.id.imagenVela)
+        private val btnAgregar: Button = itemView.findViewById(R.id.btnAgregar)
+
+        fun bind(producto: Producto) {
+            nombre.text = producto.nombre
+            precio.text = "${producto.precio} €"
+            Glide.with(imagen.context)
+                .load(producto.imagen)
+                .apply(RequestOptions().transform(RoundedCorners(40)))
+                .into(imagen)
+
+            itemView.setOnClickListener { onItemClick(producto) }
+            btnAgregar.setOnClickListener { onAgregarClick(producto) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cv_velas, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_producto, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = listaVelas[position]
-        holder.nombre.text = item.nombre
-        holder.precio.text = item.precio
-
-        Glide.with(holder.imagen.context)
-            .load(item.imagen)
-            .apply(RequestOptions().transform(RoundedCorners(40)))
-            .into(holder.imagen)
-
-        holder.itemView.setOnClickListener {
-            onItemClick(item)
-        }
+        holder.bind(listaProductos[position])
     }
 
-    override fun getItemCount(): Int {
-        return listaVelas.size
-    }
+    override fun getItemCount() = listaProductos.size
 }

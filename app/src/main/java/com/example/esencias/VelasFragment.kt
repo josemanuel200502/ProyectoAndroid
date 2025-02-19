@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class VelasFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
+    private val wishList = mutableListOf<Producto>()
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adaptador: Adaptador
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,34 +25,53 @@ class VelasFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_velas, container, false)
 
-        val db=BBDD(requireContext())
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler)
+        val db = BBDD(requireContext())
+        recyclerView = view.findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        // Obtenemos la lista de velas desde la base de datos
         val listaVelas = db.listaVelas()
 
-        val adaptador = Adaptador(listaVelas){
-            vela->mostrarInfoVela(vela)
+        // Convertimos la lista de velas a productos
+        val listaProductos = listaVelas.mapIndexed { index, vela ->
+            Producto(
+                id = index, // Usamos el índice como ID ya que Vela no tiene ID
+                nombre = vela.nombre,
+                descripcion = vela.descripcion ?: "Sin descripción",
+                precio = vela.precio.toDoubleOrNull() ?: 0.0, // Aseguramos conversión a Double
+                imagen = vela.imagen
+            )
         }
 
+        adaptador = Adaptador(listaProductos, ::mostrarInfoVela, ::toggleWishList)
         recyclerView.adapter = adaptador
 
         return view
     }
 
-    // Método para mostrar la información del curso
+    private fun toggleWishList(producto: Producto) {
+        if (wishList.contains(producto)) {
+            wishList.remove(producto)
+            Toast.makeText(context, "${producto.nombre} eliminado de la lista de deseos", Toast.LENGTH_SHORT).show()
+        } else {
+            wishList.add(producto)
+            Toast.makeText(context, "${producto.nombre} agregado a la lista de deseos", Toast.LENGTH_SHORT).show()
+        }
+        adaptador.notifyDataSetChanged()
+    }
 
-    private fun mostrarInfoVela(vela:Vela) {
-        val fragment=InformacionVela()
-        val bundle=Bundle()
-        bundle.putParcelable("vela",vela)
-        fragment.arguments=bundle
+    private fun mostrarInfoVela(producto: Producto) {
+        val fragment = InformacionVela()
+        val bundle = Bundle()
+        bundle.putParcelable("producto", producto)
+        fragment.arguments = bundle
         fragmentLoader(fragment)
     }
 
-    private fun fragmentLoader(fragment:Fragment) {
+    private fun fragmentLoader(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
             .commit()
     }
 }
