@@ -50,19 +50,24 @@
         >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerVelas"
-            android:layout_width="272dp"
-            android:layout_height="match_parent" />
+            android:id="@+id/recyclerVela"
+            android:layout_width="273dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+        <!-- Botón de la Wishlist -->
+
 
         <ImageView
             android:id="@+id/Mas"
-            android:layout_width="wrap_content"
+            android:layout_width="91dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:src="@drawable/mas"
-            tools:layout_editor_absoluteX="344dp"
-            tools:layout_editor_absoluteY="429dp" />
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="300dp" />
 
     </LinearLayout>
 
@@ -93,6 +98,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.683" />
 
+    <Button
+        android:id="@+id/btnWishlistInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WishList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
         android:id="@+id/textoCursos"
         android:layout_width="wrap_content"
@@ -105,6 +121,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.915" />
+
+
 
     <!-- Aquí irían los iconos para los usuarios y administrador -->
 

@@ -29,7 +29,7 @@ class InformacionVela : Fragment() {
         val listaVelas = db.listaVelas().take(3) // Solo 3 velas
 
         // Configurar RecyclerView
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerVelas)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerVela)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = AdaptadorInicio(listaVelas) { vela ->
             mostrarInfoVela(vela)
