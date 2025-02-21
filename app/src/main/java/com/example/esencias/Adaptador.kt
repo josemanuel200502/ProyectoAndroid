@@ -67,4 +67,7 @@ class Adaptador(
     }
 
     override fun getItemCount() = listaProductos.size
+
+
+
 }
