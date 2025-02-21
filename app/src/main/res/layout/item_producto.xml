@@ -31,4 +31,18 @@
         android:layout_height="wrap_content"
         android:text="Agregar"
         android:layout_gravity="end" />
+
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:layout_gravity="end" />
+
+    <Button
+        android:id="@+id/btnAgregarCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar al Carrito" />
+
 </LinearLayout>

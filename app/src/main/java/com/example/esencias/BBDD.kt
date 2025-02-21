@@ -4,7 +4,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 
 class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null, 1) {
 
@@ -107,6 +106,31 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             FOREIGN KEY (idProducto) REFERENCES Producto(idProducto) ON DELETE CASCADE
         );
         """
+
+
+        val tablaHistorialCompras = """
+            CREATE TABLE HistorialCompras (
+                idCompra INTEGER PRIMARY KEY AUTOINCREMENT,
+                correo TEXT NOT NULL,
+                productos TEXT NOT NULL,
+                fechaCompra LONG NOT NULL,
+                FOREIGN KEY (correo) REFERENCES Usuario(correo)
+            );
+        """
+
+
+
+        db.execSQL(tablaUsuario)
+        db.execSQL(tablaTarjeta)
+        db.execSQL(tablaUsuario_Tarjeta)
+        db.execSQL(tablaCesta)
+        db.execSQL(tablaProducto)
+        db.execSQL(tablaCestaProducto)
+        db.execSQL(tablaPedido)
+        db.execSQL(tablaPedidosProductos)
+        db.execSQL(tablaCursos)
+        db.execSQL(tablaVelas)
+        db.execSQL(tablaHistorialCompras) // Ejecutar creación de la nueva tabla
 
         val insertVelas = """
             INSERT INTO Producto  (precio,descripcion,informacion, nombre, imagen)
@@ -224,8 +248,75 @@ Precio: 39,99€', 'Curso: Crea tu vela',
         db.execSQL("DROP TABLE IF EXISTS Curso")
         db.execSQL("DROP TABLE IF EXISTS Vela")
         db.execSQL("DROP TABLE IF EXISTS Usuario")
+        db.execSQL("DROP TABLE IF EXISTS HistorialCompras") // Borrar la tabla de historial de compras si existe
         onCreate(db)
     }
+
+    fun agregarCompra(compra: Compra) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("correo", compra.usuarioId)
+            put("fechaCompra", compra.fechaCompra)
+        }
+        val idCompra = db.insert("HistorialCompras", null, values)
+
+        // Insertar cada producto en la tabla de relación Compra_Producto
+        compra.listaProductos.forEach { producto ->
+            val valuesProducto = ContentValues().apply {
+                put("idCompra", idCompra)
+                put("idProducto", producto.id)
+            }
+            db.insert("Compra_Producto", null, valuesProducto)
+        }
+
+        db.close()
+    }
+
+    fun obtenerHistorialCompras(correo: String): List<Compra> {
+        val db = readableDatabase
+        val cursor = db.query(
+            "HistorialCompras", null, "correo=?",
+            arrayOf(correo), null, null, "fechaCompra DESC"
+        )
+        val historialCompras = mutableListOf<Compra>()
+        with(cursor) {
+            while (moveToNext()) {
+                val id = getInt(getColumnIndexOrThrow("idCompra"))
+                val fecha = getLong(getColumnIndexOrThrow("fechaCompra"))
+
+                // Obtener los productos de esta compra
+                val productosCursor = db.query(
+                    "HistorialCompras_Productos", null, "idCompra=?",
+                    arrayOf(id.toString()), null, null, null
+                )
+                val listaProductos = mutableListOf<Producto>()
+                with(productosCursor) {
+                    while (moveToNext()) {
+                        val idProducto = getInt(getColumnIndexOrThrow("idProducto"))
+                        val productoCursor = db.query(
+                            "Producto", null, "idProducto=?",
+                            arrayOf(idProducto.toString()), null, null, null
+                        )
+                        if (productoCursor.moveToFirst()) {
+                            val nombre = productoCursor.getString(productoCursor.getColumnIndexOrThrow("nombre"))
+                            val precio = productoCursor.getDouble(productoCursor.getColumnIndexOrThrow("precio"))
+                            val descripcion = productoCursor.getString(productoCursor.getColumnIndexOrThrow("descripcion"))
+                            val imagen = productoCursor.getString(productoCursor.getColumnIndexOrThrow("imagen"))
+                            listaProductos.add(Producto(idProducto, nombre, precio, descripcion,  imagen))
+                        }
+                        productoCursor.close()
+                    }
+                }
+                productosCursor.close()
+
+                historialCompras.add(Compra(id, correo, listaProductos, fecha))
+            }
+        }
+        cursor.close()
+        db.close()
+        return historialCompras
+    }
+
 
     override fun onOpen(db: SQLiteDatabase) {
         super.onOpen(db)

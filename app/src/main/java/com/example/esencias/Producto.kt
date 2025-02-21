@@ -1,29 +1,29 @@
 package com.example.esencias
+
 import android.os.Parcel
 import android.os.Parcelable
 
-class Producto (
-    val id:Int,
-    val nombre:String,
-    val descripcion:String,
-    val precio:Double,
-    val imagen: String
-    )
+data class Producto(
+    val id: Int,
+    val nombre: String,
+    val precio: Double,
+    val descripcion: String,
+    val imagen: String,
 
-    : Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString() ?: "",
-        parcel.readString() ?: "",
         parcel.readDouble(),
+        parcel.readString() ?: "",
         parcel.readString() ?: ""
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(nombre)
-        parcel.writeString(descripcion)
         parcel.writeDouble(precio)
+        parcel.writeString(descripcion)
         parcel.writeString(imagen)
     }
 

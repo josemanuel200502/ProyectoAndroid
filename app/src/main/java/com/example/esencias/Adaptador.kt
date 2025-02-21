@@ -1,5 +1,6 @@
 package com.example.esencias
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +20,11 @@ import com.bumptech.glide.request.RequestOptions
 * */
 
 class Adaptador(
-    private val listaProductos: List<Producto>,
+    private val listaProductos: MutableList<Producto>,
     private val onItemClick: (Producto) -> Unit,
-    private val onAgregarClick: (Producto) -> Unit
+    private val onAgregarClick: (Producto) -> Unit,
+    private val onEliminarClick: (Producto) -> Unit,
+    private val onAgregarAlCarritoClick: (Producto) -> Unit // Agregar esta línea
 ) : RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,6 +32,8 @@ class Adaptador(
         private val precio: TextView = itemView.findViewById(R.id.precioVela)
         private val imagen: ImageView = itemView.findViewById(R.id.imagenVela)
         private val btnAgregar: Button = itemView.findViewById(R.id.btnAgregar)
+        private val btnEliminar: Button = itemView.findViewById(R.id.btnEliminar)
+        private val btnAgregarCarrito: Button = itemView.findViewById(R.id.btnAgregarCarrito) // Agregar esta línea
 
         fun bind(producto: Producto) {
             nombre.text = producto.nombre
@@ -40,6 +45,8 @@ class Adaptador(
 
             itemView.setOnClickListener { onItemClick(producto) }
             btnAgregar.setOnClickListener { onAgregarClick(producto) }
+            btnEliminar.setOnClickListener { onEliminarClick(producto) }
+            btnAgregarCarrito.setOnClickListener { onAgregarAlCarritoClick(producto) } // Agregar esta línea
         }
     }
 
@@ -50,6 +57,13 @@ class Adaptador(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listaProductos[position])
+    }
+
+    fun actualizarLista(nuevaLista: List<Producto>) {
+        listaProductos.clear()
+        listaProductos.addAll(nuevaLista)
+        Log.d("Adaptador", "Lista en adaptador: ${listaProductos.size}")
+        notifyDataSetChanged() // Notifica al RecyclerView del cambio
     }
 
     override fun getItemCount() = listaProductos.size

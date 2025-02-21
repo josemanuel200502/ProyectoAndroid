@@ -1,6 +1,7 @@
 package com.example.esencias
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,25 +38,36 @@ class VelasFragment : Fragment() {
                 precio = vela.precio.toDoubleOrNull() ?: 0.0,
                 imagen = vela.imagen
             )
-        }
+        }.toMutableList() // 🔥 Convierte la lista a MutableList
 
-        adaptador = Adaptador(listaProductos, ::mostrarInfoVela, ::toggleWishList)
+
+
+        adaptador = Adaptador(
+            listaProductos,
+            ::mostrarInfoVela,
+            ::toggleWishList,
+            ::eliminarProducto,
+            ::agregarAlCarrito
+        )
         recyclerView.adapter = adaptador
 
         return view
     }
 
-    private fun toggleWishList(producto: Producto) {
-        val wishList = wishListViewModel.wishList.value!!
-        if (wishList.contains(producto)) {
-            wishList.remove(producto)
-            Toast.makeText(context, "${producto.nombre} eliminado de la lista de deseos", Toast.LENGTH_SHORT).show()
-        } else {
-            wishList.add(producto)
-            Toast.makeText(context, "${producto.nombre} agregado a la lista de deseos", Toast.LENGTH_SHORT).show()
-        }
-        wishListViewModel.wishList.value = wishList
+    private fun agregarAlCarrito(producto: Producto) {
+        val carritoManager = ViewModelProvider(requireActivity()).get(CarritoManager::class.java)
+        Log.d("WishList", "Producto enviado al carrito: ${producto.nombre}")
+        carritoManager.agregarProducto(producto)
+
     }
+
+
+    private fun toggleWishList(producto: Producto) {
+        wishListViewModel.toggleWishList(producto)
+        Toast.makeText(context, "${producto.nombre} actualizado en la lista de deseos", Toast.LENGTH_SHORT).show()
+    }
+
+
 
     private fun mostrarInfoVela(producto: Producto) {
         val fragment = InformacionVela()
@@ -65,7 +77,13 @@ class VelasFragment : Fragment() {
         fragmentLoader(fragment)
     }
 
-    private fun fragmentLoader(fragment: Fragment) {
+    private fun eliminarProducto(producto: Producto) {
+        // Implementa aquí la lógica para eliminar el producto
+        Toast.makeText(context, "${producto.nombre} ha sido eliminado",  Toast.LENGTH_SHORT).show()
+    }
+
+
+            private fun fragmentLoader(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
